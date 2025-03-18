@@ -2,6 +2,7 @@ import express from "express";
 import { registerEmployees } from "../server/employees";
 import { getEmployees } from "../server/employees";
 import { getEmployeeById } from "../server/employees";
+import { deleteEmployees } from "../server/employees";
 
 const router = express.Router();
 
@@ -59,7 +60,7 @@ router.delete("/delete/:userId/:employeesId", async (req, res) => {
 
   try {
     const results = await deleteEmployees(userId, employeesId);
-    res.status(201)
+    res.status(201).json(results)
   } catch (error) {
     res.status(500)
   }

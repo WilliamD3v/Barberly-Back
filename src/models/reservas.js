@@ -18,15 +18,24 @@ const reservaSchema = new mongoose.Schema({
       __v: Number,
     },
   ],
+  horarioSelecionados: {
+    data: {
+      date: String,
+      day: String,
+      horariosInicial: String,
+      horariosFinal: String,
+    }
+  },
   status: {
     type: String,
     enum: ["pendente", "confirmada", "concluída", "cancelada"],
     default: "pendente",
   },
-  cliente: {
-    nome: String,
-    telefone: String,
+  cliet: {
+    name: String,
+    phone: String,
     email: String,
+    password: String,
   },
   data_criacao: { type: Date, default: new Date() },
   data_expiracao: {
