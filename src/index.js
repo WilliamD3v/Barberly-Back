@@ -20,9 +20,11 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
+/* ["http://localhost:3000", "https://barberly-back.vercel.app"] */
+
 app.use(
   cors({
-    origin: ["http://localhost:3000", "https://barberly-back.vercel.app"],
+    origin: "*",
     credentials: true,
   })
 );
