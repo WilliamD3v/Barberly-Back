@@ -29,7 +29,7 @@ app.use(
   })
 );
 
-app.use("/webhooks", routerWebhook);
+app.use("/webhooks", express.raw({ type: "application/json" }), routerWebhook);
 
 app.use(bodyParser.json());
 app.use("/user", router);
