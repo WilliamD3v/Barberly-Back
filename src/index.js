@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 
 app.use(
   cors({
-    origin: "*",
+    origin: ["http://localhost:3000", "https://barberly-back.vercel.app", "https://barberly-back.vercel.app"],
     credentials: true,
   })
 );
