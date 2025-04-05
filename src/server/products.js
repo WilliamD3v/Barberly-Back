@@ -13,6 +13,19 @@ cloudinary.config({
 export const createProducts = async (body, file, barberId) => {
   await databaseConnection();
 
+  const existingProductsCount = await productSchema.countDocuments({
+    barbearia_id: barberId,
+  });
+
+  const MAX_PRODUCTS = 3;
+
+  if (existingProductsCount >= MAX_PRODUCTS) {
+    throw {
+      status: 403,
+      message: `Limite de ${MAX_PRODUCTS} produtos atingido.`,
+    };
+  }
+
   const uploadToCloudinary = async (file, attempt = 1) => {
     return new Promise((resolve, reject) => {
       const uploadStream = cloudinary.uploader.upload_stream(
