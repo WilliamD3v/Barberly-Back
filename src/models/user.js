@@ -7,15 +7,6 @@ const barbeariaSchema  = new mongoose.Schema({
   phone: String, // Número do WhatsApp
   email: String, // E-mail oficial
   password: String,
-  endereco: {
-    rua: String,
-    numero: String,
-    complemento: String,
-    bairro: String,
-    cidade: String,
-    estado: String,
-    cep: String,
-  },
   horario_funcionamento: {
     abertura: String, // Ex.: "09:00"
     fechamento: String, // Ex.: "18:00"

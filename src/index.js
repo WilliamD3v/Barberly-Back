@@ -6,9 +6,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import router from "./controllers/user";
+import routerAddress from "./controllers/address";
 import routerEmployees from "./controllers/employees";
 import routerServices from "./controllers/services";
 import routerReserve from "./controllers/reservas";
+import routerProducts from "./controllers/Products";
 import routerUpload from "./controllers/uploadPerfil";
 import routerPayments from "./controllers/payments";
 import routerWebhook from "./controllers/webhook";
@@ -33,8 +35,10 @@ app.use("/webhooks", express.raw({ type: "application/json" }), routerWebhook);
 
 app.use(bodyParser.json());
 app.use("/user", router);
+app.use("/address", routerAddress);
 app.use("/employees", routerEmployees);
 app.use("/services", routerServices);
+app.use("/products", routerProducts);
 app.use("/reserve", routerReserve);
 app.use("/upload", routerUpload);
 app.use("/payment", routerPayments);

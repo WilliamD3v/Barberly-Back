@@ -53,7 +53,6 @@ export const register = async (body) => {
     logo_url: body.logo_url,
     phone: body.phone,
     email: body.email,
-    endereco: body.endereco,
     horario_funcionamento: body.horario_funcionamento,
     feriados_bloqueados: body.feriados_bloqueados,
     plano_assinado: "",
@@ -62,7 +61,6 @@ export const register = async (body) => {
     password: hashedPassword,
   });
 
-  console.log("Barbearia registrada:", newBarbearia);
   return newBarbearia;
 };
 
