@@ -10,7 +10,7 @@ import routerAddress from "./controllers/address";
 import routerEmployees from "./controllers/employees";
 import routerServices from "./controllers/services";
 import routerReserve from "./controllers/reservas";
-import routerProducts from "./controllers/Products";
+import routerProducts from "./controllers/products";
 import routerUpload from "./controllers/uploadPerfil";
 import routerPayments from "./controllers/payments";
 import routerWebhook from "./controllers/webhook";
