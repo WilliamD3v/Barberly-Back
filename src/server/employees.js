@@ -29,6 +29,42 @@ export const getEmployees = async (userId) => {
   return employeesAll;
 };
 
+export const updateEmployee = async (employeeId, updatedData) => {
+  await databaseConnection();
+
+  const employee = await employeesSchema.findById(employeeId);
+  if (!employee) {
+    throw new Error("Funcionário não encontrado");
+  }
+
+  const updates = {};
+
+  // Atualiza nome, se for diferente
+  if (updatedData.name && updatedData.name !== employee.name) {
+    updates.name = updatedData.name;
+  }
+
+  // Atualiza schedules, se for diferente
+  if (
+    updatedData.schedules &&
+    JSON.stringify(updatedData.schedules) !== JSON.stringify(employee.schedules)
+  ) {
+    updates.schedules = updatedData.schedules;
+  }
+
+  // Se houver alguma modificação, atualiza
+  if (Object.keys(updates).length > 0) {
+    await employeesSchema.updateOne({ _id: employeeId }, { $set: updates });
+    return { success: true, updated: updates };
+  } else {
+    return {
+      success: true,
+      updated: null,
+      message: "Nenhuma alteração detectada",
+    };
+  }
+};
+
 export const getEmployeeById = async (userId, employeesId) => {
   await databaseConnection();
 
@@ -75,7 +111,10 @@ export const deleteEmployees = async (barbeariaId, employeesId) => {
     (reserva) => reserva.funcionario_id.toString() === employeesId
   );
 
-  console.log("Reservas do funcionário a serem deletadas:", employeeReservations);
+  console.log(
+    "Reservas do funcionário a serem deletadas:",
+    employeeReservations
+  );
 
   // Deleta todas as reservas do funcionário
   await Reserva.deleteMany({ funcionario_id: employeesId });
